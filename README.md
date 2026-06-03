@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Language](https://img.shields.io/github/languages/top/CN-Hobo/BloodStrike-region-bypasser?style=flat-square)]()
 
-> 第一个项目，不喜勿喷
+> 该项目使用了AI协助完成。
 
 ## 📖 项目简介
 针对于Steam端的游戏BloodStrike(译名:血战突袭)中登录时，非常非常简易的IP地区检测绕过工具。
