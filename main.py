@@ -7,11 +7,17 @@ class BloodstrikePatcher:
     def __init__(self, root):
         self.root = root
         self.root.title("BloodStrike地区检测补丁工具")
-        self.root.geometry("550x400")
+        self.root.geometry("550x325")
         self.root.resizable(False, False)
         
-        # 设置窗口图标（可选，如果你有图标文件的话）
-        # self.root.iconbitmap("icon.ico")
+        # 尝试加载同目录下的图标文件，若不存在或加载失败则忽略
+        try:
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            icon_path = os.path.join(script_dir, "icon.ico")
+            if os.path.exists(icon_path):
+                self.root.iconbitmap(icon_path)
+        except Exception:
+            pass
         
         # 目标字符串和替换值
         self.target_string = b"aim_info"
@@ -28,11 +34,10 @@ class BloodstrikePatcher:
         title_label.pack(pady=15)
         
         # 工具介绍
-        intro_text = """本工具用于修改 BloodStrike 游戏的 NtUniSdkSteam.dll 文件。
-*功能介绍：将文件中所有的 aim_info 字符串用 00 字节填充。
-*使用方法：点击下方按钮选择游戏根目录，文件夹名BLOODSTRIKE，工具会自动定位并处理目标文件。
-*工作原理：登录游戏会向 https://mgbnaeast-g83naxx1ena.unisdk.easebar.com/g83naxx1ena/sdk/dlc_sync POST发送请求，其中有("country":"CN")在aim_info里，索性把aim_info直接改00填充，游戏找不到aim_info来识别地区后，可裸连不影响登录。
-//此工具有AI辅助制作 / B站UID:275286261//"""
+        intro_text = """本工具用于修改 BloodStrike 游戏的 NtUniSdkSteam.dll 文件以绕过登录时的地区检测。
+*使用方法：点击下方按钮选择游戏根目录，文件夹名BLOODSTRIKE，工具会自动定位并处理目标文件。(例：D:\\SteamLibrary\\steamapps\\common\\BLOODSTRIKE)
+*本工具开源免费，GitHub地址：CN-Hobo/BloodStrike-region-bypasser
+"""
         
         intro_label = tk.Label(self.root, text=intro_text, justify=tk.LEFT, wraplength=500)
         intro_label.pack(pady=10, padx=20)
@@ -81,7 +86,7 @@ class BloodstrikePatcher:
         
         # 检查文件是否存在
         if not os.path.exists(dll_path):
-            error_msg = f"找不到目标文件：\n{dll_path}\n\n可能的解决方法：\n1. 确认游戏安装完整\n2. 确认游戏版本与工具兼容\n3. 以管理员身份运行本工具"
+            error_msg = f"找不到目标文件：\n{dll_path}\n\n可能的解决方法：\n1. 确认游戏安装完整\n2. 以管理员身份运行本工具\n3. 游戏更新已修改了文件结构，等待工具更新"
             messagebox.showerror("文件不存在", error_msg)
             self.status_var.set("目标文件不存在")
             return
@@ -113,7 +118,7 @@ class BloodstrikePatcher:
                 f.write(new_content)
             
             # 成功提示
-            messagebox.showinfo("成功", f"文件处理完成！\n\n共替换了 {replace_count} 处 \"aim_info\" 字符串。\n原文件已备份为：\n{backup_path}")
+            messagebox.showinfo("成功", f"文件处理完成！\n原文件已备份为：\n{backup_path}")
             self.status_var.set(f"处理成功，替换了 {replace_count} 处")
             
             # 结束程序
