@@ -1,7 +1,7 @@
 # BloodStrike-region-bypasser
 [![GitHub stars](https://img.shields.io/github/stars/CN-Hobo/BloodStrike-region-bypasser?style=flat-square)](https://github.com/CN-Hobo/BloodStrike-region-bypasser/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/CN-Hobo/BloodStrike-region-bypasser?style=flat-square)](https://github.com/CN-Hobo/BloodStrike-region-bypasser/fork)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/badge/license-AGPL3.0-blue.svg?style=flat-square)](LICENSE)
 [![Language](https://img.shields.io/github/languages/top/CN-Hobo/BloodStrike-region-bypasser?style=flat-square)]()
 
 > 该项目使用了AI协助完成。
